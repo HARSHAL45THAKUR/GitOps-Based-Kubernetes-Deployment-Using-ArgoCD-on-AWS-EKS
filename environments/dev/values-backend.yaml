@@ -1,0 +1,7 @@
+replicaCount: 1
+image:
+  repository: <ecr-url>/backend
+  tag: dev
+service:
+  type: ClusterIP
+  port: 5000

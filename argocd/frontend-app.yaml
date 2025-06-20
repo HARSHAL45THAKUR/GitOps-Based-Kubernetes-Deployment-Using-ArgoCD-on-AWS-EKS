@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend-app
+spec:
+  destination:
+    namespace: dev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/<your-user>/<repo>
+    path: helm-charts/frontend
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - environments/dev/values-frontend.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

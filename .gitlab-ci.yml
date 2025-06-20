@@ -1,0 +1,28 @@
+stages:
+  - build
+  - push
+
+variables:
+  AWS_REGION: "us-east-1"
+
+build_backend:
+  stage: build
+  script:
+    - docker build -t backend ./app/backend
+
+build_frontend:
+  stage: build
+  script:
+    - docker build -t frontend ./app/frontend
+
+push_backend:
+  stage: push
+  script:
+    - docker tag backend $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/backend
+    - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/backend
+
+push_frontend:
+  stage: push
+  script:
+    - docker tag frontend $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/frontend
+    - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/frontend

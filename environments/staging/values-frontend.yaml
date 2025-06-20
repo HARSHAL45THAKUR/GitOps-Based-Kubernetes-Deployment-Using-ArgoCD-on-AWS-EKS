@@ -1,0 +1,7 @@
+replicaCount: 2
+image:
+  repository: <ecr-url>/frontend
+  tag: staging
+service:
+  type: ClusterIP
+  port: 80

@@ -1,0 +1,7 @@
+replicaCount: 3
+image:
+  repository: <ecr-url>/frontend
+  tag: prod
+service:
+  type: LoadBalancer
+  port: 80
